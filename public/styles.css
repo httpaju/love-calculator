@@ -6,7 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    overflow: hidden; /* Prevent scrolling from floating hearts */
+    overflow: hidden;
     position: relative;
 }
 
@@ -51,13 +51,13 @@ button {
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     transition: background 0.3s;
+    margin: 10px 5px;
 }
 
 button:hover {
     background: #FF8787;
 }
 
-/* Result Page Specific Styles */
 .result-container {
     padding: 30px;
     background: rgba(255, 255, 255, 0.95);
@@ -112,7 +112,6 @@ button:hover {
     100% { box-shadow: 0 0 15px #FF9E9E; }
 }
 
-/* Floating Hearts Background */
 body::before {
     content: '';
     position: absolute;
@@ -134,4 +133,13 @@ footer {
     margin-top: 20px;
     font-size: 12px;
     color: #666;
+}
+
+/* Share Button Specific Style */
+#share-btn {
+    background: #FF9E9E;
+}
+
+#share-btn:hover {
+    background: #FFB6B6;
 }
