@@ -14,7 +14,10 @@ document.getElementById('calculate').addEventListener('click', () => {
         },
         body: JSON.stringify({ name1, name2 }),
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+    })
     .then(data => {
         const query = `name1=${encodeURIComponent(data.name1)}&name2=${encodeURIComponent(data.name2)}&percentage=${data.percentage}&message=${encodeURIComponent(data.message)}`;
         window.location.href = `/result.html?${query}`;
