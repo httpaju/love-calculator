@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container result-container">
         <h1>❤️ Your Love Score</h1>
+        <div class="love-meter">
+            <div id="meter-fill" class="meter-fill"></div>
+        </div>
         <div id="result"></div>
-        <button onclick="window.location.href='index.html'">Try Again</button>
+        <button onclick="window.location.href='/index.html'">Try Again</button>
         <footer>Made with ❤️ by AJ APPLICATIONS</footer>
     </div>
     <script>
@@ -21,13 +24,19 @@
         const name1 = urlParams.get('name1');
         const name2 = urlParams.get('name2');
 
+        const resultDiv = document.getElementById('result');
+        const meterFill = document.getElementById('meter-fill');
+
         if (percentage && message && name1 && name2) {
-            document.getElementById('result').innerHTML = `
-                <p>${name1} & ${name2}: <span class="animate-heartbeat">${percentage}%</span></p>
-                <p>${message}</p>
+            resultDiv.innerHTML = `
+                <p class="names">${name1} & ${name2}: <span class="animate-heartbeat">${percentage}%</span></p>
+                <p class="message">${message}</p>
             `;
+            meterFill.style.width = `${percentage}%`; // Set meter width based on percentage
+            meterFill.classList.add('animate-glow'); // Add glow animation
         } else {
-            document.getElementById('result').innerHTML = '<p>Please calculate your love percentage first.</p><a href="index.html">Go to Calculator</a>';
+            resultDiv.innerHTML = '<p>Please calculate your love percentage first.</p><a href="/index.html">Go to Calculator</a>';
+            meterFill.style.width = '0%'; // Default to 0 if no result
         }
     </script>
 </body>
