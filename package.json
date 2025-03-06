@@ -1,20 +1,15 @@
 {
   "name": "love-calculator",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "A romantic and playful love calculator",
+  "main": "server.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "start": "node server.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "next": "14.x.x",
-    "react": "18.x.x",
-    "react-dom": "18.x.x"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.x.x",
-    "postcss": "^8.x.x",
-    "autoprefixer": "^10.x.x"
+    "express": "^4.18.2"
   }
 }

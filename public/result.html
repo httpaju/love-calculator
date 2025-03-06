@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Calculator Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>❤️ Your Love Score</h1>
+        <div id="result"></div>
+        <button onclick="window.location.href='index.html'">Try Again</button>
+        <footer>Made with ❤️ by AJ APPLICATIONS</footer>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const percentage = urlParams.get('percentage');
+        const message = urlParams.get('message');
+        const name1 = urlParams.get('name1');
+        const name2 = urlParams.get('name2');
+
+        if (percentage && message && name1 && name2) {
+            document.getElementById('result').innerHTML = `
+                <p>${name1} & ${name2}: <span class="animate-heartbeat">${percentage}%</span></p>
+                <p>${message}</p>
+            `;
+        } else {
+            document.getElementById('result').innerHTML = '<p>Please calculate your love percentage first.</p><a href="index.html">Go to Calculator</a>';
+        }
+    </script>
+</body>
+</html>
