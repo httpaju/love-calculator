@@ -17,68 +17,50 @@
             <div id="result"></div>
             <button id="share-btn">Share Result</button>
             <button onclick="window.location.href='/index.html'">Try Again</button>
-            <p>Your Link: <input type="text" id="share-link" readonly> <button id="copy-btn">Copy Link</button></p>
+           
             <p class="footer-text">Made with ❤️ by AJ APPLICATIONS</p>
         </div>
     </div>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const percentage = urlParams.get('percentage');
-        const message = urlParams.get('message');
-        const name1 = urlParams.get('name1');
-        const gender1 = urlParams.get('gender1');
-        const name2 = urlParams.get('name2');
-        const gender2 = urlParams.get('gender2');
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const percentage = urlParams.get('percentage');
+    const message = urlParams.get('message');
+    const name1 = urlParams.get('name1');
+    const gender1 = urlParams.get('gender1');
+    const name2 = urlParams.get('name2');
+    const gender2 = urlParams.get('gender2');
 
-        const resultDiv = document.getElementById('result');
-        const meterFill = document.getElementById('meter-fill');
-        const shareBtn = document.getElementById('share-btn');
-        const shareLink = document.getElementById('share-link');
-        const copyBtn = document.getElementById('copy-btn');
+    const resultDiv = document.getElementById('result');
+    const meterFill = document.getElementById('meter-fill');
+    const shareBtn = document.getElementById('share-btn');
 
-        if (percentage && message && name1 && gender1 && name2 && gender2) {
-            resultDiv.innerHTML = `
-                <p class="names">${name1} (${gender1}) ❤️ ${name2} (${gender2}): <span class="animate-heartbeat">${percentage}%</span> 🥰</p>
-                <p class="message">${message}</p>
-            `;
-            meterFill.style.width = `${percentage}%`;
-            meterFill.classList.add('animate-glow');
+    if (percentage && message && name1 && gender1 && name2 && gender2) {
+        resultDiv.innerHTML = `
+            <p class="names">${name1} (${gender1}) ❤️ ${name2} (${gender2}): <span class="animate-heartbeat">${percentage}%</span> 🥰</p>
+            <p class="message">${message}</p>
+        `;
+        meterFill.style.width = `${percentage}%`;
+        meterFill.classList.add('animate-glow');
 
-            const baseUrl = window.location.origin; // e.g., https://love-calculator.onrender.com
-            const shareText = `${name1}'s Crush Loves ${gender1 === 'male' ? 'him' : 'her'} ${percentage}% 🥰 How Much Your Crush Loves You?🤔 Check out now 👇 ${baseUrl}/`;
-            shareLink.value = baseUrl;
+        const baseUrl = window.location.origin;
+        const shareText = `${name1}'s Crush Loves ${gender1 === 'male' ? 'him' : 'her'} ${percentage}% 🥰 How Much Your Crush Loves You?🤔 Check out now 👇 ${baseUrl}/`;
 
-            // Share functionality
-            shareBtn.addEventListener('click', () => {
-                if (navigator.share) {
-                    navigator.share({
-                        title: 'Love Calculator Result',
-                        text: shareText,
-                        url: baseUrl,
-                    }).catch(err => console.error('Share failed:', err));
-                } else {
-                    navigator.clipboard.writeText(shareText)
-                        .then(() => alert('Result copied to clipboard!'))
-                        .catch(err => {
-                            console.error('Copy failed:', err);
-                            alert('Failed to copy. Share this manually: ' + shareText);
-                        });
-                }
-            });
-
-            // Copy link functionality
-            copyBtn.addEventListener('click', () => {
-                shareLink.select();
-                document.execCommand('copy');
-                alert('Link copied to clipboard!');
-            });
-        } else {
-            resultDiv.innerHTML = '<p>Please calculate your love percentage first.</p><a href="/index.html">Go to Calculator</a>';
-            meterFill.style.width = '0%';
-            shareBtn.style.display = 'none';
-            copyBtn.style.display = 'none';
-            shareLink.style.display = 'none';
-        }
-    </script>
+        shareBtn.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Love Calculator Result',
+                    text: shareText,
+                    url: baseUrl,
+                }).catch(err => console.error('Share failed:', err));
+            } else {
+                alert('Share functionality is not supported in this browser. Please share manually: ' + shareText);
+            }
+        });
+    } else {
+        resultDiv.innerHTML = '<p>Please calculate your love percentage first.</p><a href="/index.html">Go to Calculator</a>';
+        meterFill.style.width = '0%';
+        shareBtn.style.display = 'none';
+    }
+</script>
 </body>
 </html>
