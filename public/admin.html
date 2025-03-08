@@ -3,68 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Calculator Result</title>
+    <title>Admin Panel - Love Calculator</title>
     <link rel="icon" type="image/x-icon" href="heart.ico">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="card result-card">
+        <div class="card admin-card">
             <svg class="heart-icon" width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <path d="M50 85c-25-25-40-40-40-55 0-15 15-20 30-5 5 5 10 5 15 0 15-15 30-10 30 5 0 15-15 30-40 55z" fill="#ff4d6d"/>
             </svg>
-            <h1>Your Love Score</h1>
-            <div class="love-meter">
-                <div id="meter-fill" class="meter-fill"></div>
+            <h1>Admin Panel</h1>
+            <input type="text" id="admin-username" placeholder="Enter Admin Username" required>
+            <input type="password" id="admin-password" placeholder="Enter Admin Password" required>
+            <button id="login-btn">Login</button>
+            <div id="admin-content" style="display: none;">
+                <h2>Users and Their Crushes</h2>
+                <ul id="user-list"></ul>
+                <button onclick="window.location.href='/admin.html'">Refresh</button>
             </div>
-            <div id="result"></div>
-            <button id="share-btn">Share Result</button>
-            <button onclick="window.location.href='/index.html'">Try Again</button>
             <p class="footer-text">Made with ❤️ by AJ APPLICATIONS</p>
         </div>
     </div>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const percentage = urlParams.get('percentage');
-        const message = urlParams.get('message');
-        const name1 = urlParams.get('name1');
-        const gender1 = urlParams.get('gender1');
-        const name2 = urlParams.get('name2');
-        const gender2 = urlParams.get('gender2');
+        const loginBtn = document.getElementById('login-btn');
+        const adminContent = document.getElementById('admin-content');
+        const userList = document.getElementById('user-list');
+        const adminUsername = document.getElementById('admin-username');
+        const adminPassword = document.getElementById('admin-password');
 
-        const resultDiv = document.getElementById('result');
-        const meterFill = document.getElementById('meter-fill');
-        const shareBtn = document.getElementById('share-btn');
-
-        if (percentage && message && name1 && gender1 && name2 && gender2) {
-            const pronoun = gender1 === 'male' ? 'him' : 'her';
-            resultDiv.innerHTML = `
-                <p class="names">${name1} (${gender1}) ❤️ ${name2} (${gender2}): <span class="animate-heartbeat">${percentage}%</span> 🥰</p>
-                <p class="message">${message}</p>
-            `;
-            meterFill.style.width = `${percentage}%`;
-            meterFill.classList.add('animate-glow');
-
-            const baseUrl = window.location.origin;
-            const shareText = `${name1}'s Crush Loves ${pronoun} ${percentage}% 🥰 How Much Your Crush Loves You?🤔 Check out now 👇 ${baseUrl}/`;
-
-            shareBtn.addEventListener('click', () => {
-                if (navigator.share) {
-                    navigator.share({
-                        title: 'Love Calculator Result',
-                        text: shareText,
-                        url: baseUrl,
-                    }).catch(err => console.error('Share failed:', err));
-                } else {
-                    alert('Share functionality is not supported in this browser. Please share manually: ' + shareText);
-                }
-            });
-        } else {
-            resultDiv.innerHTML = '<p>Please calculate your love percentage first.</p><a href="/index.html">Go to Calculator</a>';
-            meterFill.style.width = '0%';
-            shareBtn.style.display = 'none';
-        }
+        loginBtn.addEventListener('click', () => {
+            const username = adminUsername.value;
+            const password = adminPassword.value;
+            fetch(`/admin?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Unauthorized');
+                    return response.json();
+                })
+                .then(data => {
+                    adminContent.style.display = 'block';
+                    userList.innerHTML = '';
+                    data.forEach(item => {
+                        userList.innerHTML += `<li>${item.user} (${item.userGender}) ❤️ ${item.crush} (${item.crushGender}) (${item.percentage}%, ${item.message}, ${item.timestamp})</li>`;
+                    });
+                })
+                .catch(error => {
+                    alert('Unauthorized or Error: ' + error.message);
+                });
+        });
     </script>
 </body>
 </html>
