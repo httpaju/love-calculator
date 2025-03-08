@@ -4,16 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Calculator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>❤️ Love Calculator</h1>
-        <p>Find out your love match!</p>
-        <input type="text" id="name1" placeholder="Your Name" required>
-        <input type="text" id="name2" placeholder="Crush's Name" required>
-        <button id="calculate">Calculate Love</button>
+        <div class="card">
+            <h1>❤️ Love Calculator</h1>
+            <p class="welcome">Welcome! 🎉 Find Your Love Match!</p>
+            <input type="text" id="name1" placeholder="Your Name" required>
+            <select id="gender1" required>
+                <option value="" disabled selected>Select Your Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <input type="text" id="name2" placeholder="Your Crush's Name" required>
+            <select id="gender2" required>
+                <option value="" disabled selected>Select Crush's Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <button id="calculate">Calculate</button>
+            <p class="share-instructions">Share with Friends! 😄 <a href="#" id="share-link">Click Here</a></p>
+            <p class="footer-text">By calculating, you agree to our T&C</p>
+        </div>
         <footer>Made with ❤️ by AJ APPLICATIONS</footer>
     </div>
     <script src="script.js"></script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Love Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card admin-card">
+            <h1>❤️ Admin Panel</h1>
+            <input type="password" id="admin-password" placeholder="Enter Admin Password" required>
+            <button id="login-btn">Login</button>
+            <div id="admin-content" style="display: none;">
+                <h2>Users and Their Crushes</h2>
+                <ul id="user-list"></ul>
+                <button onclick="window.location.href='/admin.html'">Refresh</button>
+            </div>
+            <p class="footer-text">Made with ❤️ by AJ APPLICATIONS</p>
+        </div>
+    </div>
+    <script>
+        const loginBtn = document.getElementById('login-btn');
+        const adminContent = document.getElementById('admin-content');
+        const userList = document.getElementById('user-list');
+        const adminPassword = document.getElementById('admin-password');
+
+        loginBtn.addEventListener('click', () => {
+            const password = adminPassword.value;
+            fetch(`/admin?password=${encodeURIComponent(password)}`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Unauthorized');
+                    return response.json();
+                })
+                .then(data => {
+                    adminContent.style.display = 'block';
+                    userList.innerHTML = '';
+                    data.forEach(item => {
+                        userList.innerHTML += `<li>${item.user} (${item.userGender}) ❤️ ${item.crush} (${item.crushGender}) (${item.percentage}%, ${item.message}, ${item.timestamp})</li>`;
+                    });
+                })
+                .catch(error => {
+                    alert('Unauthorized or Error: ' + error.message);
+                });
+        });
+    </script>
+</body>
+</html>
