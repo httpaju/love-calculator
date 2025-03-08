@@ -26,6 +26,14 @@ body {
     width: 100%;
 }
 
+.result-card {
+    border: 2px solid #ff4d6d;
+}
+
+.admin-card {
+    border: 2px solid #ff4d6d;
+}
+
 .heart-icon {
     margin: 0 auto 10px;
     display: block;
@@ -104,6 +112,21 @@ button:hover {
     font-size: 16px;
     color: #555;
     font-style: italic;
+}
+
+#user-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#user-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-size: 14px;
 }
 
 .footer-text {
