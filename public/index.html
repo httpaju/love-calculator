@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Calculator</title>
+    <link rel="icon" type="image/x-icon" href="heart.ico">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-      <link rel="icon" type="image/svg+xml" href="https://aj-talk-to-stranger.onrender.com/icon.svg">
 </head>
 <body>
     <div class="container">
         <div class="card">
-            <h1>❤️ Love Calculator</h1>
+            <svg class="heart-icon" width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 85c-25-25-40-40-40-55 0-15 15-20 30-5 5 5 10 5 15 0 15-15 30-10 30 5 0 15-15 30-40 55z" fill="#ff4d6d"/>
+            </svg>
+            <h1>Love Calculator</h1>
             <p class="welcome">Welcome! 🎉 Find Your Love Match!</p>
             <input type="text" id="name1" placeholder="Your Name" required>
             <select id="gender1" required>
@@ -26,7 +29,6 @@
                 <option value="female">Female</option>
             </select>
             <button id="calculate">Calculate</button>
-           
             <p class="footer-text">By calculating, you agree to our T&C</p>
         </div>
         <footer>Made with ❤️ by AJ APPLICATIONS</footer>
