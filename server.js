@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const calculations = new Map(); // In-memory storage for user data
-const adminPassword = 'cupid'; // Simple password for admin access
+const adminCredentials = { username: 'cupid', password: 'cupid123' }; // Admin username and password
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -29,9 +29,9 @@ app.post('/calculate', (req, res) => {
 
 // GET endpoint for admin to view all calculations
 app.get('/admin', (req, res) => {
-    const password = req.query.password;
-    if (password !== adminPassword) {
-        return res.status(401).send('Unauthorized: Incorrect password');
+    const { username, password } = req.query;
+    if (username !== adminCredentials.username || password !== adminCredentials.password) {
+        return res.status(401).send('Unauthorized: Incorrect username or password');
     }
     const data = Array.from(calculations.entries()).map(([id, calc]) => ({ id, ...calc }));
     res.json(data);
