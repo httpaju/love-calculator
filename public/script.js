@@ -25,7 +25,6 @@ document.getElementById('calculate').addEventListener('click', () => {
     .then(data => {
         const query = `name1=${encodeURIComponent(data.name1)}&gender1=${data.gender1}&name2=${encodeURIComponent(data.name2)}&gender2=${data.gender2}&percentage=${data.percentage}&message=${encodeURIComponent(data.message)}`;
         window.location.href = `/result.html?${query}`;
-        document.getElementById('share-link').href = `/`;
     })
     .catch(error => {
         console.error('Error:', error);
