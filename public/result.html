@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Calculator Result</title>
-    <link rel="icon" type="image/x-icon" href="heart.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Your Love Result 💕</title>
+    <link rel="icon" type="image/svg+xml" href="heart.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="card result-card">
-            <svg class="heart-icon" width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 85c-25-25-40-40-40-55 0-15 15-20 30-5 5 5 10 5 15 0 15-15 30-10 30 5 0 15-15 30-40 55z" fill="#ff4d6d"/>
+            <svg class="heart-icon" width="60" height="60" viewBox="0 0 24 24" role="img" aria-label="Heart Icon">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff4d6d"/>
             </svg>
             <h1>Your Love Score</h1>
             <div class="love-meter">
                 <div id="meter-fill" class="meter-fill"></div>
             </div>
-            <div id="result"></div>
-            <button id="share-btn">Share Result</button>
-            <button onclick="window.location.href='/index.html'">Try Again</button>
-            <p class="footer-text">Made with ❤️ by AJ APPLICATIONS</p>
+            <div id="result" class="fade-in"></div>
+            <div class="button-group">
+                <button id="share-btn" aria-label="Share Result">Share Result</button>
+                <button onclick="window.location.href='/index.html'" aria-label="Try Again">Try Again</button>
+            </div>
+            <p class="footer-text">Made with 💖 by AJ APPLICATIONS</p>
         </div>
     </div>
     <script>
@@ -47,7 +49,7 @@
             meterFill.classList.add('animate-glow');
 
             const baseUrl = window.location.origin;
-            const shareText = `${name1}'s Crush Loves ${pronoun} ${percentage}% 🥰 How Much Your Crush Loves You?🤔 Check out now 👇 ${baseUrl}/`;
+            const shareText = `${name1}'s Crush Loves ${pronoun} ${percentage}% 🥰 How Much Your Crush Loves You? 🤔 Check out now! 👇 ${baseUrl}/`;
 
             shareBtn.addEventListener('click', () => {
                 if (navigator.share) {
@@ -57,11 +59,11 @@
                         url: baseUrl,
                     }).catch(err => console.error('Share failed:', err));
                 } else {
-                    alert('Share functionality is not supported in this browser. Please share manually: ' + shareText);
+                    alert('Share functionality is not supported. Please share manually: ' + shareText);
                 }
             });
         } else {
-            resultDiv.innerHTML = '<p>Please calculate your love percentage first.</p><a href="/">Go to Calculator</a>';
+            resultDiv.innerHTML = '<p>Please calculate your love percentage first.</p><a href="/index.html">Go to Calculator</a>';
             meterFill.style.width = '0%';
             shareBtn.style.display = 'none';
         }
