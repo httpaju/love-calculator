@@ -3,35 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Calculator</title>
-   <link rel="icon" type="image/svg+xml" href="https://aj-talk-to-stranger.onrender.com/icon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Love Calculator 💕</title>
+    <link rel="icon" type="image/svg+xml" href="heart.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="card">
-            <svg class="heart-icon" width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 85c-25-25-40-40-40-55 0-15 15-20 30-5 5 5 10 5 15 0 15-15 30-10 30 5 0 15-15 30-40 55z" fill="#ff4d6d"/>
+            <svg class="heart-icon" width="60" height="60" viewBox="0 0 24 24" role="img" aria-label="Heart Icon">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff4d6d"/>
             </svg>
             <h1>Love Calculator</h1>
-            <p class="welcome">Welcome! 🎉 Find Your Love Match!</p>
-            <input type="text" id="name1" placeholder="Your Name" required>
-            <select id="gender1" required>
-                <option value="" disabled selected>Select Your Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-            <input type="text" id="name2" placeholder="Your Crush's Name" required>
-            <select id="gender2" required>
-                <option value="" disabled selected>Select Crush's Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-            <button id="calculate">Calculate</button>
+            <p class="welcome">Discover the magic of love! 💖</p>
+            <form id="love-form" aria-label="Love Calculator Form">
+                <input type="text" id="name1" placeholder="Your Name" required aria-label="Your Name">
+                <select id="gender1" required aria-label="Your Gender">
+                    <option value="" disabled selected>Select Your Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <input type="text" id="name2" placeholder="Your Crush's Name" required aria-label="Crush's Name">
+                <select id="gender2" required aria-label="Crush's Gender">
+                    <option value="" disabled selected>Select Crush's Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <button type="submit" id="calculate" aria-label="Calculate Love Percentage">Calculate</button>
+            </form>
             <p class="footer-text">By calculating, you agree to our T&C</p>
         </div>
-        <footer>Made with ❤️ by AJ APPLICATIONS</footer>
     </div>
     <script src="script.js"></script>
 </body>
